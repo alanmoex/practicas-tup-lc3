@@ -2,7 +2,7 @@ import { Alert, Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
 
 const Login = () => {
-  const [enteredUser, setEnteredUser] = useState("");
+  const [enteredUsername, setEnteredUsername] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertVariant, setAlertVariant] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -13,11 +13,11 @@ const Login = () => {
       setShowAlert(false);
     }, 3000);
   };
-  const enteredUserHandler = (event) => {
-    const user = event.target.value;
-    setEnteredUser(user);
+  const enteredUsernameHandler = (event) => {
+    const Username = event.target.value;
+    setEnteredUsername(Username);
 
-    if (user.toLowerCase().includes("o")) {
+    if (Username.toLowerCase().includes("o")) {
       setAlertVariant("warning");
       setAlertMessage("Por favor, ¡Nombres de usuario sin la letra o!");
 
@@ -28,7 +28,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (enteredUser == "" || enteredUser.toLowerCase().includes("o")) {
+    if (enteredUsername == "" || enteredUsername.toLowerCase().includes("o")) {
       setAlertVariant("danger");
       setAlertMessage("Usuario inválido para registrarse");
 
@@ -36,7 +36,7 @@ const Login = () => {
     } else {
       setAlertVariant("success");
       setAlertMessage("¡Usuario registrado correctamente!");
-
+      setEnteredUsername("");
       alert();
     }
   };
@@ -47,13 +47,13 @@ const Login = () => {
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col xs={12} md={12} className="text-center">
-              <Form.Group className="mb-3" controlId="user">
+              <Form.Group className="mb-3" controlId="Username">
                 <Form.Label>Usuario</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="ingrese usuario"
-                  onChange={enteredUserHandler}
-                  value={enteredUser}
+                  onChange={enteredUsernameHandler}
+                  value={enteredUsername}
                 ></Form.Control>
               </Form.Group>
             </Col>
@@ -65,7 +65,7 @@ const Login = () => {
           </Row>
           <Row className="align-items-center justify-content-center">
             <Col xs={12} md={12}>
-              <p>{enteredUser}</p>
+              <p>{enteredUsername}</p>
             </Col>
           </Row>
         </Form>
