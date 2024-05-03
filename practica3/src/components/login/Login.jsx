@@ -14,10 +14,10 @@ const Login = () => {
     }, 3000);
   };
   const enteredUsernameHandler = (event) => {
-    const Username = event.target.value;
-    setEnteredUsername(Username);
+    const username = event.target.value;
+    setEnteredUsername(username);
 
-    if (Username.toLowerCase().includes("o")) {
+    if (username.toLowerCase().includes("o")) {
       setAlertVariant("warning");
       setAlertMessage("Por favor, ¡Nombres de usuario sin la letra o!");
 
